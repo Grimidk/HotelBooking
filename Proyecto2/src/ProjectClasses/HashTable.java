@@ -7,53 +7,114 @@ package ProjectClasses;
 /**
  *
  * @author juanmendezl
- * @param <K>
  */
-public class HashTable<K> {
-    private ListSimple<K>[] array;
+public class HashTable<K, V> {
+    private SimpleList<Entry<K, V>>[] array;
     private int size;
     
+    private static class Entry<K, V> {
+        K key;
+        V value;
+        Entry<K, V> next;
+        
+        Entry(K key, V value){
+            this.key = key;
+            this.value= value;
+            this.next = null;
+        }
+    }
+
     public HashTable(int size) {
         this.size = size;
-        array = new ListSimple[size];
-        int i = 0;
-            while (i < size) {
-                array[i] = new ListSimple();
-            }
+        array = new SimpleList[size];
+        for (int i = 0; i < 10; i++) {
+            array[i] = new SimpleList<>();
+        }
     }
     
     private int getHash(K key){
-        int n = Math.abs(key.hashCode() % size);
-        return n;
+        int hashCode = key.hashCode();
+        return Math.abs(hashCode) % size;
     }
     
-    public Room get(K key){
-       int n = getHash(key);
-       int aux = this.array[n].getIndex(key);
-       if (aux != -1){
-            Room temp = this.array[n].getNodeRoom(aux);
-            return temp;
-       } else { 
-            return null; 
-       }
+    public void put(K key, V value){
+        int index = getHash(key);
+        if (array[index] == null){
+            array[index] = new SimpleList<>();
+        }
+        SimpleList<Entry<K, V>> list = array[index];
+        NodoLista<Entry<K, V>> node = list.getHead();
+        while(node != null){
+            Entry<K, V> entry = node.getData();
+            if (entry.key.equals(key)){
+                entry.value = value;
+                return;
+            }
+            node = node.getPnext();
+        }
+        list.add(new Entry<>(key, value));
+    }
+    
+    public V get(K key){
+        int index = getHash(key);
+        if (array[index] == null){
+            return null;
+        }
+        SimpleList<Entry<K, V>> list = array[index];
+        NodoLista<Entry<K, V>> node = list.getHead();
+        while(node != null) {
+            Entry<K, V> entry = node.getData();
+            if(entry.key.equals(key)) {
+                return entry.value;
+            }
+            node = node.getPnext();
+        }
+        return null;
     }
     
     public void remove(K key){
-       int n = getHash(key);
-       int aux = this.array[n].getIndex(key);
-       if (aux != -1){
-            this.array[n].delete(aux);
-       } else {
-            System.out.println("Objeto no encontrado");  
-       }
+        int index = getHash(key);
+        
+        if (array[index] == null){
+            return;
+        }
+        SimpleList<Entry<K, V>> list = array[index];
+        NodoLista<Entry<K, V>> node = list.getHead();
+        NodoLista<Entry<K, V>> prev = null;
+        
+        while (node != null){
+            Entry<K, V> entry = node.getData();
+            if (entry.key.equals(key)){
+                if (prev == null){
+                    list.setHead(node.getPnext());
+                } else {
+                    prev.setPnext(node.getPnext());
+                }
+                return;
+            }
+            prev = node;
+            node = node.getPnext();
+        }
     }
     
-    public void add(K key, Room room){
-       int n = getHash(key);
-       this.array[n].addLast(key, room);
+    public void replaceValue(K key,String replace){
+        V value = get(key);
+        this.remove(key);
+        this.put(key,(V)replace);     
     }
     
-    public int getSize(){
-        return this.size;
+    public K getHab(V value){
+        int i = 0;
+        while(i < this.size){
+            NodoLista<Entry<K, V>> aux = array[i].getHead();
+            while(aux != null) {
+                if(aux.getData().value.equals(value)){
+                    return aux.getData().key;    
+                }
+                aux = aux.getPnext();
+            i++;
+            }
+        }
+        return null;
     }
 }

@@ -10,80 +10,88 @@ package ProjectClasses;
  */
 public class Reservation {
     
-    private String room;
     private String fname;
     private String lname;
-    private String mail;
-    private String gender;
-    private String phone;
     private String indate;
+    private String outdate;
+    private String room;
+    private String ci;
+    private String gender;
+    private String email;
+    private String phone;
     
     /**
-     * Constructor for the reservation with all the data
-     * @param room
-     * @param fname
-     * @param lname
-     * @param mail
+     * Constructor for the reservation with all data
+     * @param FirstName
+     * @param LastName
+     * @param Room
+     * @param Indate
+     * @param Outdate
+     * @param ci
      * @param gender
+     * @param email
      * @param phone
-     * @param indate
      */
-    public Reservation(String room, String fname, String lname, String mail, String gender, String phone, String indate){
-        if (!room.equals("")) {
-            this.room = room;
-        } else {
-            this.room = null;
-        }
-        this.fname = fname;
-        this.lname = lname;
-        this.mail = mail;
+    public Reservation(String FirstName, String LastName, String Room, String Indate, String Outdate, String ci, String gender, String email, String phone){
+        this.fname = FirstName;
+        this.lname = LastName;
+        this.room = Room;
+        this.indate = Indate;
+        this.outdate = Outdate;
+        this.ci = ci;
         this.gender = gender;
+        this.email = email;
         this.phone = phone;
-        this.indate = indate;
-    }    
+    }
+    
+    
+    public String getFirstName(){
+        return this.fname;
+    }
+    
+    public String getLastName(){
+        return this.lname;
+    }
     
     public String getRoom(){
         return this.room;
     }
     
-    public String getFirstname(){
-        return this.fname;
+     public String getIndate(){
+        return this.indate;
     }
     
-    public String getLastname(){
-        return this.lname;
+    public String getOutdate(){
+        return this.outdate;
     }
     
-    public String getMail(){
-        return this.mail;
+    public String getCi(){
+        return this.ci;
     }
     
     public String getGender(){
         return this.gender;
     }
     
+     public String getEmail(){
+        return this.email;
+    }
+    
     public String getPhone(){
         return this.phone;
     }
     
-    public String getIndate(){
-        return this.indate;
+    public void setNames(String Fname,String Lname){
+        this.fname = Fname;
+        this.lname = Lname;
     }
     
-    public void setRoom(String room){
-        this.room = room;
+    public void setRoom(String Room){
+        this.room = Room;
     }
     
-    public void setFirstname(String fname){
-        this.fname = fname;
-    }
-    
-    public void setLastname(String lname){
-        this.lname = lname;
-    }
-    
-    public void setMail(String mail){
-        this.mail = mail;
+    public void setCi(String ci){
+        this.ci = ci;
     }
     
     public void setGender(String gender){
@@ -94,7 +102,16 @@ public class Reservation {
         this.phone = phone;
     }
     
+    public void setEmail(String email){
+        this.email = email;
+    }
+    
     public void setIndate(String indate){
         this.indate = indate;
     }
+    
+    public void setOutdate(String outdate){
+        this.outdate = outdate;
+    }
+        
 }

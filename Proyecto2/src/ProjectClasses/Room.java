@@ -10,7 +10,7 @@ package ProjectClasses;
  */
 public class Room {
     
-    private User customer;
+    private Reservation customer;
     private String number;
     private String floor;
     private String type;
@@ -22,7 +22,7 @@ public class Room {
      * @param floor
      * @param type
      */
-    public Room(User Customer, String Number, String floor, String type){
+    public Room(Reservation Customer, String Number, String floor, String type){
         this.customer = Customer;
         this.number = Number;
         this.floor = floor;
@@ -42,7 +42,7 @@ public class Room {
         this.customer = null;
     }
     
-    public User getCustomer(){
+    public Reservation getCustomer(){
         return this.customer;
     }
     
@@ -58,7 +58,7 @@ public class Room {
         return this.type;
     }
     
-    public void setCustomer(User user){
+    public void setCustomer(Reservation user){
         this.customer = user;
     }
     
