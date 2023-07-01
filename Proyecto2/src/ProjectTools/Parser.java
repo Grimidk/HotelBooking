@@ -11,8 +11,8 @@ import ProjectClasses.*;
  * todas las funciones que pasan el csv a clases utilizables
  */
 public class Parser {
-    public static HashTable parseReservation(String data){
-        ProjectClasses.HashTable myHashtable = new ProjectClasses.HashTable<>(11);
+    public static SimpleList parseReservation(String data){
+        ProjectClasses.SimpleList myList = new SimpleList();
         String[] lines = data.split("\n");
         int i = 1;
         while (i < lines.length) {
@@ -20,22 +20,19 @@ public class Parser {
             if (datos.length == 11) {
                 String aux = datos[0] + datos[1] + datos[2];
                 Reservation user = new Reservation(datos[3],datos[4],datos[7],datos[9],datos[10],aux,datos[6],datos[5],datos[8]);
-                String temp = user.getFirstName() +" "+ user.getLastName();
-                myHashtable.put(temp, user.getRoom());
+                myList.add(user);
             } else if (datos.length == 10) {
                 String aux = datos[0] + datos[1];
                 Reservation user = new Reservation(datos[2],datos[3],datos[6],datos[8],datos[9],aux,datos[5],datos[4],datos[7]);
-                String temp = user.getFirstName() +" "+ user.getLastName();
-                myHashtable.put(temp, user.getRoom());
+                myList.add(user);
             } else {
                 String aux = datos[0];
                 Reservation user = new Reservation(datos[2],datos[3],datos[6],datos[8],datos[9],aux,datos[5],datos[4],datos[7]);
-                String temp = user.getFirstName() +" "+ user.getLastName();
-                myHashtable.put(temp, user.getRoom());
+                myList.add(user);
             }
             i++;
         }
-        return myHashtable;
+        return myList;
     }
     public static HashTable parseHabitaciones(String data){
         ProjectClasses.HashTable myHashtable = new ProjectClasses.HashTable<>(11);

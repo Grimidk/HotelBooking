@@ -3,24 +3,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
 package ProjectInterface;
-import ProjectClasses.*;
+
 import ProjectTools.*;
+import ProjectClasses.*;
 import javax.swing.JOptionPane;
 
 /**
  *
  * @author macbookpro
  */
-public class HistorialHabi extends javax.swing.JFrame {
+public class SeekById extends javax.swing.JFrame {
     
-    public static String numHabi = "";
-    public static inicio ini;
+    public static String id = "";
 
+    public static inicio ini;
     /**
-     * Creates new form HistorialHabi
+     * Creates new form seekById
      */
-    public HistorialHabi(inicio ini) {
+    public SeekById(inicio ini) {
         initComponents();
+        
         this.ini = ini;
         ini.setVisible(false);
         this.setVisible(true);
@@ -36,19 +38,14 @@ public class HistorialHabi extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        loadHabi = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
         x = new javax.swing.JButton();
+        loadID = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        loadHabi.setText("load");
-        loadHabi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                loadHabiActionPerformed(evt);
-            }
-        });
-        getContentPane().add(loadHabi, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 60, -1));
+        jPanel2.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         x.setText("x");
         x.addActionListener(new java.awt.event.ActionListener() {
@@ -56,31 +53,53 @@ public class HistorialHabi extends javax.swing.JFrame {
                 xActionPerformed(evt);
             }
         });
-        getContentPane().add(x, new org.netbeans.lib.awtextra.AbsoluteConstraints(40, 20, 40, -1));
+        jPanel2.add(x, new org.netbeans.lib.awtextra.AbsoluteConstraints(19, 22, 40, -1));
+
+        loadID.setText("load");
+        loadID.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                loadIDActionPerformed(evt);
+            }
+        });
+        jPanel2.add(loadID, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 60, -1));
+
+        getContentPane().add(jPanel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 400, 300));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void loadHabiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadHabiActionPerformed
-       String data4 = CSVreader.getCsv("Booking_hotel - Historico.csv");
-       History[] histories = Parser.parseHistorico(data4);
-       String room = JOptionPane.showInputDialog(null,"Ingrese el numero de cuarto que desea ver: ", "101"); 
-       while (!Checker.isNum(room) || Integer.parseInt(room) <= 0 || Integer.parseInt(room) >= 301) {
-           room = JOptionPane.showInputDialog(null,"Ingrese un numero valido (1 - 300): ", "101"); 
-       }
-       String data = Fetcher.fetchHistory(room,histories);
-       System.out.println("Proceso exitoso!");
-       JOptionPane.showMessageDialog(rootPane, data, "Historial " + room, HEIGHT);
-       this.dispose();
-       inicio ini = new inicio();
-       ini.setVisible(true);
-    }//GEN-LAST:event_loadHabiActionPerformed
 
     private void xActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xActionPerformed
         this.dispose();
         inicio ini = new inicio();
         ini.setVisible(true);
     }//GEN-LAST:event_xActionPerformed
+
+    private void loadIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadIDActionPerformed
+       String ci = JOptionPane.showInputDialog(null,"Ingrese la cedula de identidad: ", "1234567"); 
+       while (!Checker.isNum(ci) & Integer.parseInt(ci)>0 & Integer.parseInt(ci)<=999999999) {
+           ci = JOptionPane.showInputDialog(null,"Ingrese una cedula valida: ", "1234567"); 
+       }
+       String data1 = CSVreader.getCsv("Booking_hotel - General.csv");
+       SimpleList myList = Parser.parseReservation(data1);
+       NodoLista aux = myList.getHead();
+       while (aux != null){
+           Reservation reserva = (Reservation) aux.getData();
+           if(reserva.getCi().equalsIgnoreCase(ci)){
+                String data = Parser.reverseParseReservation(reserva);
+                JOptionPane.showMessageDialog(rootPane, data, "Reserva de " + ci, HEIGHT);   
+                System.out.println("Proceso exitoso!");
+                this.dispose();
+                inicio ini = new inicio();
+                ini.setVisible(true);
+           }
+           aux = aux.getPnext();
+       }
+       System.out.println("Proceso fallido :(!");
+       this.dispose();
+       inicio ini = new inicio();
+       ini.setVisible(true);
+       
+    }//GEN-LAST:event_loadIDActionPerformed
 
     /**
      * @param args the command line arguments
@@ -99,27 +118,30 @@ public class HistorialHabi extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(HistorialHabi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeekById.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(HistorialHabi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeekById.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(HistorialHabi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeekById.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(HistorialHabi.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(SeekById.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new HistorialHabi(ini).setVisible(true);
+                new SeekById(ini).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton loadHabi;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JButton loadID;
     private javax.swing.JButton x;
     // End of variables declaration//GEN-END:variables
 }
