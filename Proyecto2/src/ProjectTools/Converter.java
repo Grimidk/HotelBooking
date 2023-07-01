@@ -11,7 +11,7 @@ import ProjectClasses.*;
  * todo lo que es pasar de una clase a otra
  */
 public class Converter {
-    public Status checkIn(Reservation reserva, HashTable myHashtable){
+    public static Status checkIn(Reservation reserva, HashTable myHashtable){
         String room = null;
         String roomtype = reserva.getRoom();
         myHashtable.getHab(0);
@@ -19,7 +19,7 @@ public class Converter {
         return estado;
     }
     
-    public History checkOut(String fname, String lname, HashTable myHashtable){
+    public static History checkOut(String fname, String lname, HashTable myHashtable){
 //        String aux = fname + " " + lname;
 //        K key = myHashtable.getHab(aux);
 //        myHashtable.replaceValue(key, 0);

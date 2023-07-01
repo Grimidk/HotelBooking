@@ -23,7 +23,7 @@ public class App {
      // los convirte en sus respectivas clases para poder entrarlos en hashmaps y ABB
      HashTable myHashtable = Parser.parseHabitaciones(data2);
      myHashtable = Parser.parseEstado(data3, myHashtable);
-     Parser.parseReservation(data1);
+     SimpleList myList = Parser.parseReservation(data1);
      History[] histories = Parser.parseHistorico(data4);
      // interfaz inicial
      inicio ini = new inicio();

@@ -32,19 +32,21 @@ public class inicio extends javax.swing.JFrame {
         CheckIn = new javax.swing.JButton();
         checkOut = new javax.swing.JButton();
         HistorialH = new javax.swing.JButton();
+        x = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        registroClientes.setText("Registro Clientes");
+        registroClientes.setText("Registro Reserva");
         registroClientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 registroClientesActionPerformed(evt);
             }
         });
-        getContentPane().add(registroClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 120, -1));
+        getContentPane().add(registroClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 40, 140, -1));
 
-        reservacionID.setText("Busqueda Resn ID");
+        reservacionID.setText("Busqueda Reserva");
         reservacionID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 reservacionIDActionPerformed(evt);
@@ -58,7 +60,7 @@ public class inicio extends javax.swing.JFrame {
                 CheckInActionPerformed(evt);
             }
         });
-        getContentPane().add(CheckIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 120, -1));
+        getContentPane().add(CheckIn, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 190, 140, -1));
 
         checkOut.setText("Check Out");
         checkOut.addActionListener(new java.awt.event.ActionListener() {
@@ -66,7 +68,7 @@ public class inicio extends javax.swing.JFrame {
                 checkOutActionPerformed(evt);
             }
         });
-        getContentPane().add(checkOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 120, -1));
+        getContentPane().add(checkOut, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 240, 140, -1));
 
         HistorialH.setText("Historial Hab");
         HistorialH.addActionListener(new java.awt.event.ActionListener() {
@@ -74,30 +76,45 @@ public class inicio extends javax.swing.JFrame {
                 HistorialHActionPerformed(evt);
             }
         });
-        getContentPane().add(HistorialH, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 120, -1));
+        getContentPane().add(HistorialH, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 140, 140, -1));
+
+        x.setText("x");
+        x.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                xActionPerformed(evt);
+            }
+        });
+        getContentPane().add(x, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 10, 40, -1));
+
+        jLabel1.setText("Sistema Hotel EDD");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 10, 120, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void checkOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkOutActionPerformed
-        // TODO add your handling code here:
+        CheckOut chn = new CheckOut(this);
     }//GEN-LAST:event_checkOutActionPerformed
 
     private void registroClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_registroClientesActionPerformed
-        customerR csr = new customerR(this);
+        CustomerRegister csr = new CustomerRegister(this);
     }//GEN-LAST:event_registroClientesActionPerformed
 
     private void reservacionIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_reservacionIDActionPerformed
-        seekById sbi = new seekById(this);
+        SeekById sbi = new SeekById(this);
     }//GEN-LAST:event_reservacionIDActionPerformed
 
     private void CheckInActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CheckInActionPerformed
-        checkIn chn = new checkIn(this);
+        CheckIn chn = new CheckIn(this);
     }//GEN-LAST:event_CheckInActionPerformed
 
     private void HistorialHActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HistorialHActionPerformed
         HistorialHabi hhn = new HistorialHabi(this);
     }//GEN-LAST:event_HistorialHActionPerformed
+
+    private void xActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_xActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_xActionPerformed
 
     /**
      * @param args the command line arguments
@@ -126,6 +143,12 @@ public class inicio extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
@@ -139,7 +162,9 @@ public class inicio extends javax.swing.JFrame {
     private javax.swing.JButton CheckIn;
     private javax.swing.JButton HistorialH;
     private javax.swing.JButton checkOut;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JButton registroClientes;
     private javax.swing.JButton reservacionID;
+    private javax.swing.JButton x;
     // End of variables declaration//GEN-END:variables
 }
